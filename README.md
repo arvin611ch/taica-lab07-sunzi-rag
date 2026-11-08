@@ -4,7 +4,7 @@
 
 - **程式二（RAG02，對話機器人；繳交用）Colab：** https://colab.research.google.com/github/arvin611ch/taica-lab07-sunzi-rag/blob/main/RAG02_sunzi_strategist_chatbot.ipynb
 - **程式一（RAG01，建向量資料庫）Colab：** https://colab.research.google.com/github/arvin611ch/taica-lab07-sunzi-rag/blob/main/RAG01_build_sunzi_vector_db.ipynb
-- **向量資料庫：** `rag-data.zip`（程式二會自動從 https://raw.githubusercontent.com/arvin611ch/taica-lab07-sunzi-rag/main/rag-data.zip 下載）
+- **向量資料庫：** `rag-data.zip`（程式二會自動從 https://github.com/arvin611ch/taica-lab07-sunzi-rag/raw/main/rag-data.zip 下載）
 - **知識來源：** `data/sunzi/`（13 篇 TXT）與 `data/sunzi_source.zip`
 - **截圖：** `screenshots/`（`design_chat_*.png` 是和 AI 討論人設的四輪對話；`app_*.png` 是 Gradio 實際操作）
 - **AI 協作紀錄：** `ai_assist_log.md`

@@ -658,7 +658,7 @@ from sentence_transformers import SentenceTransformer
 from IPython.display import display, Markdown
 
 IN_COLAB = "google.colab" in sys.modules
-RAG_DATA_URL = "https://raw.githubusercontent.com/__REPO__/main/rag-data.zip"   # 助教：直接執行即可；也可換成 Google Drive 分享連結
+RAG_DATA_URL = "https://github.com/__REPO__/raw/main/rag-data.zip"   # 助教：直接執行即可；也可換成 Google Drive 分享連結
 DEFAULT_TOP_K = 3
 TEMPERATURE = 0.3
 MAX_OUTPUT_TOKENS = 2048
