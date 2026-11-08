@@ -4,7 +4,7 @@
 
 - **程式二（RAG02，對話機器人；繳交用）Colab：** https://colab.research.google.com/github/arvin611ch/taica-lab07-sunzi-rag/blob/main/RAG02_sunzi_strategist_chatbot.ipynb
 - **程式一（RAG01，建向量資料庫）Colab：** https://colab.research.google.com/github/arvin611ch/taica-lab07-sunzi-rag/blob/main/RAG01_build_sunzi_vector_db.ipynb
-- **向量資料庫：** `rag-data.zip`（程式二會自動從 https://github.com/arvin611ch/taica-lab07-sunzi-rag/raw/main/rag-data.zip 下載）
+- **向量資料庫：** `rag-data.zip`（程式二會自動從 https://raw.githubusercontent.com/arvin611ch/taica-lab07-sunzi-rag/main/rag-data.zip 下載，失敗時改試備援網址）
 - **知識來源：** `data/sunzi/`（13 篇 TXT）與 `data/sunzi_source.zip`
 - **截圖：** `screenshots/`（`design_chat_*.png` 是和 AI 討論人設的四輪對話；`app_*.png` 是 Gradio 實際操作）
 - **AI 協作紀錄：** `ai_assist_log.md`
@@ -18,6 +18,8 @@
 ## 怎麼跑
 
 **Colab（助教請用這個）**：開上面程式二的連結 → 左側 🔑 新增金鑰（名稱 `Groq`；也可用 `OpenRouter`／`OpenAI`／`Anthropic`）並打開筆記本存取權 → 全部執行。`rag-data.zip` 會自動下載，最後一格開 Gradio 網頁。程式一不需要金鑰，直接全部執行即可（文本 zip 也會自動下載）。
+
+`RAG02` 原本使用的 `github.com/.../raw/...` 下載網址曾回傳 HTTP 504；現在改用 `raw.githubusercontent.com`，失敗時改試 jsDelivr，並核對下載檔的 SHA-256。Colab 網址保持不變。
 
 **本機**（需要 Python 3.12；沒有雲端金鑰時會自動改用本機 Ollama 的 `qwen2.5:14b`）：
 
