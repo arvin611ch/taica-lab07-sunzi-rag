@@ -648,7 +648,7 @@ nb2.code("pip", """
 nb2.code("settings", r'''
 from pathlib import Path
 import importlib.metadata as package_metadata
-import hashlib, html, io, json, os, re, shutil, sys, tempfile, zipfile, urllib.request
+import hashlib, html, io, json, os, re, sys, tempfile, zipfile, urllib.request
 
 import torch
 import faiss
@@ -658,9 +658,7 @@ from sentence_transformers import SentenceTransformer
 from IPython.display import display, Markdown
 
 IN_COLAB = "google.colab" in sys.modules
-RAG_DATA_URL = "https://raw.githubusercontent.com/__REPO__/main/rag-data.zip"  # 可換成 Google Drive 分享連結
-RAG_DATA_BACKUP_URL = "https://cdn.jsdelivr.net/gh/__REPO__@main/rag-data.zip"
-RAG_DATA_SHA256 = "988b70701f63baf43c91ea21c177b45616f6ace95335661852d65842a9b628c5"
+RAG_DATA_URL = "https://github.com/__REPO__/raw/main/rag-data.zip"   # 助教：直接執行即可；也可換成 Google Drive 分享連結
 DEFAULT_TOP_K = 3
 TEMPERATURE = 0.3
 MAX_OUTPUT_TOKENS = 2048
@@ -674,40 +672,14 @@ display(pd.DataFrame([(name, package_metadata.version(name))
 ''')
 nb2.code("download", r'''
 ZIP_PATH = Path("rag-data.zip")
-def _download_rag_zip(url, destination):
-    partial = destination.with_suffix(".download")
-    try:
-        if "drive.google.com" in url:
-            import gdown
-            if not gdown.download(url, str(partial), fuzzy=True, quiet=False):
-                raise RuntimeError("Google Drive 下載失敗")
-        else:
-            request = urllib.request.Request(url, headers={"User-Agent": "taica-lab07-sunzi-rag/1.0"})
-            with urllib.request.urlopen(request, timeout=30) as response, partial.open("wb") as output:
-                shutil.copyfileobj(response, output)
-        if hashlib.sha256(partial.read_bytes()).hexdigest() != RAG_DATA_SHA256:
-            raise ValueError("下載檔案的 SHA-256 與本作業資料庫不一致")
-        partial.replace(destination)
-    finally:
-        partial.unlink(missing_ok=True)
-
-if ZIP_PATH.exists() and hashlib.sha256(ZIP_PATH.read_bytes()).hexdigest() == RAG_DATA_SHA256:
-    print("使用已存在且核對通過的 rag-data.zip")
+if ZIP_PATH.exists():
+    print("使用目前資料夾裡的 rag-data.zip（本機 repo 目錄）")
+elif "drive.google.com" in RAG_DATA_URL:
+    import gdown
+    gdown.download(RAG_DATA_URL, str(ZIP_PATH), fuzzy=True, quiet=False)
 else:
-    if ZIP_PATH.exists():
-        print("已存在的 rag-data.zip 不完整，重新下載。")
-        ZIP_PATH.unlink()
-    failures = []
-    for url in dict.fromkeys([RAG_DATA_URL, RAG_DATA_BACKUP_URL]):
-        try:
-            _download_rag_zip(url, ZIP_PATH)
-            print("已下載並核對：", url)
-            break
-        except Exception as exc:
-            failures.append(f"{url}: {exc}")
-            print("下載失敗，改試備援來源：", url, type(exc).__name__)
-    if not ZIP_PATH.exists():
-        raise RuntimeError("rag-data.zip 下載失敗；" + "；".join(failures))
+    urllib.request.urlretrieve(RAG_DATA_URL, ZIP_PATH)
+    print("已下載：", RAG_DATA_URL)
 print("大小：", f"{ZIP_PATH.stat().st_size:,} bytes", "／sha256：", hashlib.sha256(ZIP_PATH.read_bytes()).hexdigest()[:16], "…")
 
 required_files = {"index.faiss", "documents.json", "index_doc_ids.json", "config.json"}
