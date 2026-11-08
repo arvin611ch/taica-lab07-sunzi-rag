@@ -12,7 +12,7 @@ https://colab.research.google.com/github/arvin611ch/taica-lab07-sunzi-rag/blob/m
 第一份程式（RAG01，建向量資料庫）：
 https://colab.research.google.com/github/arvin611ch/taica-lab07-sunzi-rag/blob/main/RAG01_build_sunzi_vector_db.ipynb
 
-rag-data.zip（程式二會自動下載）：https://github.com/arvin611ch/taica-lab07-sunzi-rag/raw/main/rag-data.zip
+rag-data.zip（程式二會自動下載）：https://raw.githubusercontent.com/arvin611ch/taica-lab07-sunzi-rag/main/rag-data.zip
 原始碼、資料、全部截圖與 AI 協作紀錄：https://github.com/arvin611ch/taica-lab07-sunzi-rag
 
 **我所使用的資料：**
